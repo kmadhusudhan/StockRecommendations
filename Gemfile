@@ -28,7 +28,7 @@ gem 'bootstrap', '~> 4.4.1'
 gem "font-awesome-rails"
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
-gem 'devise', '~> 4.3.0'
+gem 'devise', '~> 4.7.1'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
