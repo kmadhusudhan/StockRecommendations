@@ -1,0 +1,42 @@
+<div class="container">
+  <p id="notice"><%#= notice %></p>
+  <h1>Recommendations</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Stock Name</th>
+          <th>Recommendation Title</th>
+          <th>Description</th>
+          <th>No Of votes</th>
+          <th>Do Vote</th>
+          <th>Show</th>
+          <%if current_role != 'Viewer'%>
+            <th colspan="2" class="text-center">Actions</th>
+          <%end%>
+        </tr>
+      </thead>
+      <tbody>
+        <% @recommendations.each do |recommendation| %>
+          <tr id="rec_<%=recommendation.id%>">
+            <td><%= recommendation.stock.try(:title) %></td>
+            <td><%= recommendation.title %></td>
+            <td><%= recommendation.description %></td>
+            <td class="vote"><%= recommendation.votes_for.size %></td>
+            <td> <button type="button" class="btn btn-success" onclick="doVote(<%=recommendation.id%>)">
+              <i class="fa fa-thumbs-up" aria-hidden="true"></i> Do Vote
+        </button></td>
+            <td><%= link_to 'Show', recommendation %></td>
+            <%if current_role != 'Viewer'%>
+              <td><%= link_to 'Edit', edit_recommendation_path(recommendation) %></td>
+              <td><%= link_to 'Destroy', recommendation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <%end%>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+
+  <br>
+  <%if current_role != 'Viewer'%>
+    <%= link_to 'New Recommendation', new_recommendation_path %>
+  <%end%>
+</div>

@@ -1,0 +1,19 @@
+<div class="container">
+  <p id="notice"><%#= notice %></p>
+  <p>
+    <strong>Title:</strong>
+    <%= @recommendation.title %>
+  </p>
+  <p>
+    <strong>Description:</strong>
+    <%= @recommendation.description %>
+  </p>
+  <p>
+    <strong>No Of Votes:</strong>
+    <%= @recommendation.votes_for.size %>
+  </p>
+  <%if current_role != 'Viewer'%>
+      <%= link_to 'Edit', edit_recommendation_path(@recommendation) %> |
+  <%end%>
+  <%= link_to 'Back', recommendations_path %>
+</div>

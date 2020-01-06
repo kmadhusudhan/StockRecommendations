@@ -1,0 +1,31 @@
+<%= form_with(model: recommendation, local: true) do |form| %>
+  <% if recommendation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(recommendation.errors.count, "error") %> prohibited this recommendation from being saved:</h2>
+
+      <ul>
+      <% recommendation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :stock %>
+    <%= form.select :stock_id ,Stock.all.collect {|s| [ s.title, s.id ] },{},class: "form-control"%>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :recommendation_title,class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_field :description, id: :recommendation_description,class: "form-control"%>
+  </div>
+  <div class="actions">
+    <%= form.submit "Submit",class: "btn btn-primary" %>
+  </div>
+<% end %>

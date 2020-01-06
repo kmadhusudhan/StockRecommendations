@@ -1,0 +1,48 @@
+<div class="container">
+  <p id="notice"><%#= notice %></p>
+
+  <h1>Stocks</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Sector</th>
+        <th>Description</th>
+        <th>Followers Count</th>
+        <th>Follow</th>
+        <th>
+          show
+        </th>
+        <!-- <th>UnFollow</th> -->
+        <%if current_user.is_admin?%>
+          <th colspan="2" class="text-center">Actions</th>
+        <%end%>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @stocks.each do |stock| %>
+        <tr id="stock_<%=stock.id%>">
+          <td><%= stock.title %></td>
+          <td><%= stock.sector %></td>
+          <td><%= stock.description %></td>
+          <td class="follow_count"><%= stock.followers.count %></td>
+          <td class="follow"> <button type="button" class="btn btn-success" onclick="doFollow(<%=stock.id%>)">
+            <i class="fa fa-thumbs-up" aria-hidden="true"></i> Follow
+      </button></td>
+      <!-- <td class="follow"> <button type="button" class="btn btn-danger" onclick="doUnFollow(<%=stock.id%>)">
+        <i class="fa fa-thumbs-down" aria-hidden="true"></i> Un Follow
+  </button></td> -->
+          <td><%= link_to 'Show', stock %></td>
+          <%if current_user.is_admin?%>
+            <td><%= link_to 'Edit', edit_stock_path(stock) %></td>
+            <td><%= link_to 'Destroy', stock, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%end%>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+    <%= link_to 'New Stock', new_stock_path %>
+</div>

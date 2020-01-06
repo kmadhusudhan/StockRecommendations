@@ -1,0 +1,2 @@
+class FemalePolicy < UserPolicy
+end

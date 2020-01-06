@@ -1,0 +1,22 @@
+<div class="container">
+  <p id="notice"><%#= notice %></p>
+  <p>
+    <strong>Title:</strong>
+    <%= @stock.title %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= @stock.description %>
+  </p>
+
+  <p>
+    <strong>Sector:</strong>
+    <%= @stock.sector %>
+  </p>
+
+  <%if current_user.is_admin? %>
+    <%= link_to 'Edit', edit_stock_path(@stock) %> |
+  <%end%>
+  <%= link_to 'Back', stocks_path %>
+</div>
